@@ -1,26 +1,67 @@
-# Lumen PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
+Required:
+- PHP 8.1+
+- PostgresSql
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+1) in project create .env and fill it from .env.example
+2) copy .env.example to .env and set properties for your db
+   in .env Fill next fields with your local data:
+```
+   * DB_DATABASE=test_devport
+   * DB_USERNAME=***
+   * DB_PASSWORD=***
+```
+3) run next commands:
+```
+- composer install
+- php artisan key:generate
+- php artisan jwt:secret
+- php artisan migrate
+- php artisan db:seed
+```
 
-> **Note:** In the years since releasing Lumen, PHP has made a variety of wonderful performance improvements. For this reason, along with the availability of [Laravel Octane](https://laravel.com/docs/octane), we no longer recommend that you begin new projects with Lumen. Instead, we recommend always beginning new projects with [Laravel](https://laravel.com).
+Stack:
+Lumen
+PostgreSQL
 
-## Official Documentation
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+Task:
+Create RESTFull API.
 
-## Contributing
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Description:
+Create the API to share the company's information for the logged users.
+Please use the Repository-Service pattern in your task.
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Details:
+Create DB migrations for the tables: users, companies, etc.
+Suggest the DB structure. Fill the DB with the test data.
 
-## License
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Endpoints:
+- https://domain.com/api/user/register
+  — method POST
+  — fields: first_name [string], last_name [string], email [string], password [string], phone [string]
+
+
+- https://domain.com/api/user/sign-in
+  — method POST
+  — fields: email [string], password [string]
+
+
+- https://domain.com/api/user/recover-password
+  — method POST/PATCH
+  — fields: email [string] // allow to update the password via email token
+
+
+- https://domain.com/api/user/companies
+  — method GET
+  — fields: title [string], phone [string], description [string]
+  — show the companies, associated with the user (by the relation)
+
+
+- https://domain.com/api/user/companies
+  — method POST
+  — fields: title [string], phone [string], description [string]
+  — add the companies, associated with the user (by the relation)
